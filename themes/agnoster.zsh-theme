@@ -90,6 +90,7 @@ prompt_end() {
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment black default "%(!.%{%F{yellow}%}.)%n"
+    # prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
   fi
 }
 
@@ -200,6 +201,8 @@ prompt_hg() {
 # Dir: current working directory
 prompt_dir() {
   prompt_segment blue $CURRENT_FG '%C'
+  # prompt_segment blue black '%c'
+  # prompt_segment blue $CURRENT_FG '%~'
 }
 
 # Virtualenv: current working virtualenv
