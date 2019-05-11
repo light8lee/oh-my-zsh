@@ -32,6 +32,10 @@ main() {
   if [ ! -n "$ZSH" ]; then
     ZSH=~/.oh-my-zsh
   fi
+  
+  if [ ! -n "$ZSH_CUSTOM" ]; then
+    ZSH_CUSTOM=$ZSH/custom
+  fi
 
   if [ -d "$ZSH" ]; then
     printf "${YELLOW}You already have Oh My Zsh installed.${NORMAL}\n"
@@ -91,7 +95,11 @@ main() {
       printf "${BLUE}Please manually change your default shell to zsh!${NORMAL}\n"
     fi
   fi
-
+  env git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions || {
+    printf "Error: git clone of zsh-autosuggestions repo failed\n"
+    exit 1
+  }
+  
   printf "${GREEN}"
   echo '         __                                     __   '
   echo '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
